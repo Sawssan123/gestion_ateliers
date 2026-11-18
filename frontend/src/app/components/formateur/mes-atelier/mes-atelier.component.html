@@ -1,0 +1,133 @@
+<div class="mes-ateliers-container">
+
+  <div class="page-header">
+    <div>
+      <h1>Mes ateliers</h1>
+      <p>Consultez les ateliers que vous animez et leurs participants.</p>
+    </div>
+
+    <span class="atelier-count">
+      {{ ateliers.length }} atelier(s)
+    </span>
+  </div>
+
+  <!-- Chargement -->
+  <p *ngIf="loading" class="loading">
+    Chargement de vos ateliers...
+  </p>
+
+  <!-- Erreur -->
+  <p *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </p>
+
+  <!-- Tableau des ateliers -->
+  <div class="table-container" *ngIf="!loading && !errorMessage">
+
+    <table *ngIf="ateliers.length > 0">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Durée</th>
+          <th>Participants</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let atelier of ateliers">
+          <td>{{ atelier.titre }}</td>
+
+          <td>{{ atelier.description }}</td>
+
+          <td>{{ atelier.date | date:'dd/MM/yyyy' }}</td>
+
+          <td>{{ atelier.duree }} h</td>
+
+
+          
+
+          <td>
+            <button
+              type="button"
+              class="participants-btn"
+              (click)="openParticipantsModal(atelier)">
+              👥 Participants
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="ateliers.length === 0" class="empty-message">
+      Vous n'animez aucun atelier pour le moment.
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal des participants -->
+<div class="modal-overlay" *ngIf="showParticipantsModal">
+
+  <div class="modal-content">
+
+    <h2>Liste des participants</h2>
+
+    <p>
+      Atelier :
+      <strong>{{ selectedAtelier?.titre }}</strong>
+    </p>
+
+    <p *ngIf="loadingParticipants">
+      Chargement des participants...
+    </p>
+
+    <p class="error" *ngIf="participantsError">
+      {{ participantsError }}
+    </p>
+
+    <div *ngIf="!loadingParticipants && !participantsError">
+
+      <p class="participants-total">
+        Nombre de participants : {{ participants.length }}
+      </p>
+
+      <table
+        class="participants-table"
+        *ngIf="participants.length > 0">
+
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Email du participant</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let participant of participants; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ participant.email }}</td>
+          </tr>
+        </tbody>
+
+      </table>
+
+      <p *ngIf="participants.length === 0" class="empty-message">
+        Aucun participant inscrit à cet atelier.
+      </p>
+
+    </div>
+
+    <div class="modal-buttons">
+      <button
+        type="button"
+        class="close-btn"
+        (click)="closeParticipantsModal()">
+        Fermer
+      </button>
+    </div>
+
+  </div>
+</div>

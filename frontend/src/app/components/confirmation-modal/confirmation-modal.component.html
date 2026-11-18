@@ -1,0 +1,38 @@
+<div class="modal-overlay" (click)="onCancel()">
+
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div
+      class="modal-icon"
+      [class.danger-icon]="variant === 'danger'">
+      {{ icon }}
+    </div>
+
+    <h3>{{ title }}</h3>
+
+    <p>{{ message }}</p>
+
+    <div class="modal-buttons">
+
+      <button
+        type="button"
+        class="confirm-btn"
+        [class.danger-btn]="variant === 'danger'"
+        [disabled]="loading"
+        (click)="onConfirm()">
+        {{ loading ? 'Traitement...' : confirmLabel }}
+      </button>
+
+      <button
+        type="button"
+        class="cancel-modal-btn"
+        [disabled]="loading"
+        (click)="onCancel()">
+        {{ cancelLabel }}
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

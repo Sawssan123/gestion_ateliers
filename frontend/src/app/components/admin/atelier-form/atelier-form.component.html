@@ -1,0 +1,102 @@
+<div class="form-container">
+
+  <h2>{{ atelierId ? 'Modifier un atelier' : 'Ajouter un atelier' }}</h2>
+
+  <form [formGroup]="atelierForm" (ngSubmit)="onSubmit()">
+
+    <!-- Titre -->
+    <div class="form-group">
+      <label for="titre">Titre de l'atelier</label>
+      <input
+        id="titre"
+        type="text"
+        formControlName="titre"
+        placeholder="Exemple : Formation Angular"
+      />
+
+      <small *ngIf="atelierForm.get('titre')?.touched && atelierForm.get('titre')?.hasError('required')">
+        Le titre est obligatoire.
+      </small>
+
+      <small *ngIf="atelierForm.get('titre')?.hasError('maxlength')">
+        Maximum 255 caractères.
+      </small>
+    </div>
+
+    <!-- Description -->
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        id="description"
+        formControlName="description"
+        placeholder="Décrivez l'atelier..."
+        rows="4">
+      </textarea>
+
+      <small *ngIf="atelierForm.get('description')?.touched && atelierForm.get('description')?.hasError('required')">
+        La description est obligatoire.
+      </small>
+    </div>
+
+    <!-- Date -->
+    <div class="form-group">
+      <label for="date">Date de l'atelier</label>
+      <input
+        id="date"
+        type="date"
+        formControlName="date"
+      />
+
+      <small *ngIf="atelierForm.get('date')?.touched && atelierForm.get('date')?.invalid">
+        La date est obligatoire.
+      </small>
+    </div>
+
+    <!-- Durée -->
+    <div class="form-group">
+      <label for="duree">Durée (heures)</label>
+      <input
+        id="duree"
+        type="number"
+        formControlName="duree"
+        placeholder="Exemple : 3"
+      />
+
+      <small *ngIf="atelierForm.get('duree')?.touched && atelierForm.get('duree')?.invalid">
+        La durée doit être supérieure ou égale à 1 heure.
+      </small>
+    </div>
+
+
+
+    <p class="error" *ngIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
+    <div class="buttons">
+      <button type="submit" [disabled]="isSubmitting">
+        {{ isSubmitting ? 'Enregistrement...' : 'Enregistrer' }}
+      </button>
+
+      <button
+        type="button"
+        class="cancel-btn"
+        (click)="cancel()">
+        Annuler
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<app-confirmation-modal
+  *ngIf="showConfirmation"
+  [title]="confirmationTitle"
+  [message]="confirmationMessage"
+  confirmLabel="Oui, confirmer"
+  cancelLabel="Non, annuler"
+  variant="primary"
+  [loading]="isSubmitting"
+  (confirm)="confirmSave()"
+  (cancel)="cancelConfirmation()">
+</app-confirmation-modal>

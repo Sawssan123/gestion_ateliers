@@ -1,0 +1,147 @@
+.mes-ateliers-container {
+  padding: 30px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  margin-bottom: 8px;
+  color: #263238;
+}
+
+.page-header p {
+  color: #777;
+}
+
+.atelier-count {
+  background: #e8f0fe;
+  color: #2563eb;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.table-container {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  overflow-x: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f5f6fa;
+  color: #444;
+}
+
+tbody tr:hover {
+  background: #fafafa;
+}
+
+.participant-count {
+  background: #e8f0fe;
+  color: #2563eb;
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: 600;
+}
+
+.participants-btn {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 9px 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.participants-btn:hover {
+  background: #1d4ed8;
+}
+
+.loading,
+.empty-message {
+  text-align: center;
+  padding: 25px;
+  color: #777;
+}
+
+.error {
+  color: #dc2626;
+  margin: 15px 0;
+}
+
+/* Modal */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 12px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  color: #263238;
+}
+
+.participants-total {
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.participants-table {
+  margin-top: 15px;
+}
+
+.participants-table th {
+  background: #f5f6fa;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 25px;
+}
+
+.close-btn {
+  background: #64748b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  background: #475569;
+}
